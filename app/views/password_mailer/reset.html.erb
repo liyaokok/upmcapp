@@ -1,0 +1,5 @@
+Hi <%= params[:user].email %>, <br/>
+
+Click the following link to reset your password: 
+
+<%= link_to "Reset password", password_reset_edit_url(token: @token) %>
