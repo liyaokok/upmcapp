@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   patch "password/reset/edit", to: "password_resets#update"
 
   get "profile", to: "profiles#new"
+  patch "profile", to: "profiles#update"
 
   root to: "main#index"
 end
