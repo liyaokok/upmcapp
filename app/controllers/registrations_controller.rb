@@ -1,17 +1,21 @@
 class RegistrationsController < ApplicationController
     def new
-        @user = User.new
+        @employee = Employee.new
     end
 
     def create
-        @user = User.new(user_params)
+        @employee = Employee.new(employee_params)
+        
+        if @employee.employee_role.nil?
+            @employee.employee_role = EmployeeRole.find_by(name: "general")
+        end
 
-        if @user.save
-            session[:user_id] = @user.id
-            redirect_to root_path, notice: "Successfully created account " + @user.email
+        if @employee.save
+            session[:employee_id] = @employee.id
+            redirect_to root_path, notice: "Successfully created account " + @employee.email
         else
-            if @user.errors.any?
-                flash[:alert] = @user.errors.full_messages
+            if @employee.errors.any?
+                flash[:alert] = @employee.errors.full_messages
             end
             
             redirect_to sign_up_path
@@ -20,7 +24,7 @@ class RegistrationsController < ApplicationController
 
     private 
 
-    def user_params
-        params.require(:user).permit(:email, :password, :password_confirmation)
+    def employee_params
+        params.require(:employee).permit(:name, :email, :employee_role, :password, :password_confirmation)
     end
 end
