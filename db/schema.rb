@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_164107) do
     t.bigint "employee_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["department_id", "employee_id"], name: "index_employee_department_maps_on_department_id_and_employee_id", unique: true
     t.index ["department_id"], name: "index_employee_department_maps_on_department_id"
     t.index ["employee_id"], name: "index_employee_department_maps_on_employee_id"
   end
@@ -38,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_164107) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_employee_task_maps_on_employee_id"
+    t.index ["task_id", "employee_id"], name: "index_employee_task_maps_on_task_id_and_employee_id", unique: true
     t.index ["task_id"], name: "index_employee_task_maps_on_task_id"
   end
 
