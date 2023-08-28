@@ -34,3 +34,28 @@ for department in departments do
         Task.create!(name: department.name + " task " + i.to_s, department: department);
     end
 end
+
+# employees
+
+Employee.destroy_all
+
+Employee.create!([
+    {
+        name: "Jim Department",
+        email: "Jim_fake@gmail.com",
+        salary: 300000.00,
+        address: "100 Jim Rd, Pittsburgh PA, 15213",
+        password: "password",
+        password_confirmation: "password",
+        employee_role: EmployeeRole.find_by(name: "department manager")
+    },
+    {
+        name: "Bob Company",
+        email: "Bob_fake@gmail.com",
+        salary: 500000.00,
+        address: "200 Bob Rd, Pittsburgh PA, 15213",
+        password: "password",
+        password_confirmation: "password",
+        employee_role: EmployeeRole.find_by(name: "company manager")
+    },
+])
