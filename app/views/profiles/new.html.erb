@@ -23,6 +23,20 @@
   </div>
 
   <div class="mb-3">
+    <ul class="list-group">
+        <% unless Current.user.departments.empty? %>
+            <%= form.label :department %>
+        <% end %>
+        <% for department in Current.user.departments do %>
+            <li class="list-group-item">
+                <%= department.name %>
+            </li>
+        <% end %>
+    </ul>
+  </div>
+
+
+  <div class="mb-3">
 
   <div class="mb-3">
     <%= form.submit "Update", class: "btn btn-primary" %>
