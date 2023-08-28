@@ -9,4 +9,8 @@ class Employee < ApplicationRecord
     def departments
         Department.where(id: EmployeeDepartmentMap.where(employee_id: self.id).pluck(:department_id))
     end
+
+    def tasks
+        Task.where(id: EmployeeTaskMap.where(employee_id: self.id).pluck(:task_id))
+    end
 end

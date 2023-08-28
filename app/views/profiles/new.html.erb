@@ -25,11 +25,24 @@
   <div class="mb-3">
     <ul class="list-group">
         <% unless Current.user.departments.empty? %>
-            <%= form.label :department %>
+            <%= form.label :departments %>
         <% end %>
         <% for department in Current.user.departments do %>
             <li class="list-group-item">
                 <%= department.name %>
+            </li>
+        <% end %>
+    </ul>
+  </div>
+
+  <div class="mb-3">
+    <ul class="list-group">
+        <% unless Current.user.tasks.empty? %>
+            <%= form.label :tasks %>
+        <% end %>
+        <% for task in Current.user.tasks do %>
+            <li class="list-group-item">
+                <%= task.name %>
             </li>
         <% end %>
     </ul>
