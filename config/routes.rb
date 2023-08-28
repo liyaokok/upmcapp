@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   get "profile", to: "profiles#new"
   patch "profile", to: "profiles#update"
 
+  get "employee", to: "employees#new"
+
   root to: "main#index"
 end

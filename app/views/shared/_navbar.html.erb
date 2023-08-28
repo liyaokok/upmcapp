@@ -14,7 +14,7 @@
         </li>
         <li class="nav-item">
           <% if Current.user&.manager? %>
-            <%= link_to "My employees", "/", class: "nav-link" %>
+            <%= link_to "My employees", employee_path, class: "nav-link" %>
           <% end %>
         </li>
       </ul>
