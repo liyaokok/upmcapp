@@ -17,4 +17,8 @@ class Employee < ApplicationRecord
     def manager?
         self.employee_role.name != "general"
     end
+
+    def department_manager?
+        self.employee_role.name == "department manager"
+    end
 end
