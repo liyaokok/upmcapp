@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     def require_user_logged_in!
         redirect_to sign_in_path, alert: "You must sign in first." if Current.user.nil?
     end
+
+    def require_manager_role!
+        redirect_to root_path, alert: "You must be a manager role in order to manage employees" unless Current.user&.manager?
+    end
 end

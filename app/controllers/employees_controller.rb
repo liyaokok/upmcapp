@@ -7,11 +7,7 @@ class EmployeesController < ApplicationController
     end
 
     private 
-
-    def require_manager_role!
-        redirect_to root_path, alert: "You must be a manager role in order to manage employees" unless Current.user&.manager?
-    end
-
+    
     def my_employees  
         if Current.user.department_manager?
             uniqe_employee_ids = EmployeeDepartmentMap.where(department_id: Current.user.departments.pluck(:id)).pluck(:employee_id).uniq

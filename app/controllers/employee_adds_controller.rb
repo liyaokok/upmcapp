@@ -1,4 +1,6 @@
 class EmployeeAddsController < ApplicationController
+    before_action :require_manager_role!
+
     def new
         @employee = Employee.new
     end
@@ -7,7 +9,11 @@ class EmployeeAddsController < ApplicationController
         @employee = Employee.new(employee_params)
 
         if @employee.save
-            redirect_to employee_path, notice: "Successfully add new employee" + @employee.name
+            if Current.user.department_manager? && Current.user.departments.length > 0
+                EmployeeDepartmentMap.create(employee_id: @employee.id, department_id: Current.user.departments.first.id)
+            end
+
+            redirect_to employee_path, notice: "Successfully add new employee " + @employee.name
         else
             if @employee.errors.any?
                 flash[:alert] = @employee.errors.full_messages

@@ -23,12 +23,19 @@
   </div>
   <div class="mb-3">
     <%= form.label :address %>
-    <%= form.text_field :address, class: "form-control", placeholder: "0.00" %>
+    <%= form.text_field :address, class: "form-control", placeholder: "PO BOX" %>
   </div>
-  <div class="mb-3">
-    <%= form.label :employee_role %>
-    <%= form.collection_select :employee_role_id, EmployeeRole.all, :id, :name , {} , class: "form-select" %>
-  </div>
+  <% if Current.user.department_manager? %>
+    <div class="mb-3">
+      <%= form.label :employee_role %>
+      <%= form.collection_select :employee_role_id, EmployeeRole.where(name: "general"), :id, :name , {} , class: "form-select" %>
+    </div>
+  <% else %>
+    <div class="mb-3">
+      <%= form.label :employee_role %>
+      <%= form.collection_select :employee_role_id, EmployeeRole.all, :id, :name , {} , class: "form-select" %>
+    </div>
+  <% end %>
 
   <div class="mb-3">
     <%= form.submit "Add employee", class: "btn btn-primary" %>
