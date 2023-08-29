@@ -29,5 +29,7 @@ Rails.application.routes.draw do
   get "employee/add", to: "employee_adds#new"
   post "employee/add", to: "employee_adds#create"
 
+  get "emp_log", to: "emp_logs#new"
+
   root to: "main#index"
 end

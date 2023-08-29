@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
     def require_manager_role!
         redirect_to root_path, alert: "You must be a manager role in order to manage employees" unless Current.user&.manager?
     end
+
+    def require_company_manager_role!
+        redirect_to root_path, alert: "You must be a company manager in order to access" unless Current.user&.company_manager?
+    end
 end
