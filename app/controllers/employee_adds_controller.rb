@@ -13,6 +13,8 @@ class EmployeeAddsController < ApplicationController
                 EmployeeDepartmentMap.create(employee_id: @employee.id, department_id: Current.user.departments.first.id)
             end
 
+            EmpLog.create(source_name: Current.user.name, target_name: @employee.name, action: "employee_adds#create", params: employee_params.except(:password, :password_confirmation).to_s)
+
             redirect_to employee_path, notice: "Successfully add new employee " + @employee.name
         else
             if @employee.errors.any?

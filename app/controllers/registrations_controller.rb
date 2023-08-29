@@ -11,6 +11,8 @@ class RegistrationsController < ApplicationController
         end
 
         if @employee.save
+            EmpLog.create(source_name: @employee.name, target_name: @employee.name, action: "registrations#update", params: employee_params.except(:password, :password_confirmation).to_s)
+
             session[:employee_id] = @employee.id
             redirect_to root_path, notice: "Successfully created account " + @employee.email
         else
