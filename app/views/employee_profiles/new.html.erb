@@ -1,6 +1,6 @@
 <h1>Employee Profile</h1>
 
-<%= form_with model: @employee, url: "" do |form| %>
+<%= form_with model: @employee, url: employee_profile_path do |form| %>
   <div class="mb-3">
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control", value: @employee.name %>
@@ -19,7 +19,7 @@
   </div>
   <div class="mb-3">
     <%= form.label :salary %>
-    <%= form.text_field :salary, class: "form-control", value: @employee.salary, readonly: true %>
+    <%= form.text_field :salary, class: "form-control", value: @employee.salary %>
   </div>
 
   <div class="mb-3">
@@ -53,6 +53,5 @@
 
   <div class="mb-3">
     <%= form.submit "Update", class: "btn btn-primary" %>
-    <%= link_to "Reset password", edit_password_path, method: :get, class: "btn btn-outline-secondary" %>
   </div>
 <% end %>
