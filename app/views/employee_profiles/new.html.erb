@@ -1,0 +1,58 @@
+<h1>Employee Profile</h1>
+
+<%= form_with model: @employee, url: "" do |form| %>
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", value: @employee.name %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control", value: @employee.email%>
+  </div>
+  <div class="mb-3">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: "form-control", value: @employee.address %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :employee_role %>
+    <%= form.text_field :employee_role, class: "form-control", value: @employee.employee_role.name, readonly: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :salary %>
+    <%= form.text_field :salary, class: "form-control", value: @employee.salary, readonly: true %>
+  </div>
+
+  <div class="mb-3">
+    <ul class="list-group">
+        <% unless @employee.departments.empty? %>
+            <%= form.label :departments %>
+        <% end %>
+        <% for department in @employee.departments do %>
+            <li class="list-group-item">
+                <%= department.name %>
+            </li>
+        <% end %>
+    </ul>
+  </div>
+
+  <div class="mb-3">
+    <ul class="list-group">
+        <% unless @employee.tasks.empty? %>
+            <%= form.label :tasks %>
+        <% end %>
+        <% for task in @employee.tasks do %>
+            <li class="list-group-item">
+                <%= task.name %>
+            </li>
+        <% end %>
+    </ul>
+  </div>
+
+
+  <div class="mb-3">
+
+  <div class="mb-3">
+    <%= form.submit "Update", class: "btn btn-primary" %>
+    <%= link_to "Reset password", edit_password_path, method: :get, class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>
