@@ -1,3 +1,24 @@
 <h1>EMP Logs</h1>
 
-
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Datetime</th>
+      <th scope="col">Source</th>
+      <th scope="col">Taget</th>
+      <th scope="col">Action</th>
+      <th scope="col">Params</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for emp_log in @entries do %>
+      <tr>
+        <th scope="row"><%= l emp_log.created_at, format: :long %></th>
+        <td><%= emp_log.source_name %></td>
+        <td><%= emp_log.target_name %></td>
+        <td><%= emp_log.action %></td>
+        <td><%= emp_log.params %></td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
