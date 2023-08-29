@@ -20,11 +20,12 @@
         <td><%= employee.name %></td>
         <td><%= employee.email %></td>
         <td>
-          <%= link_to "Edit", employee_profile_path(employee.id), class:"btn btn-primary" %>
-          <a class="btn btn-primary" href="#" role="button">Delete</a>
+          <div class="d-flex">
+            <%= link_to "Edit", employee_profile_path(employee.id), class:"btn btn-primary" %>
+            <%= button_to "Delete", employee_profile_path(employee.id), method: :delete, class: "btn btn-danger ms-3" %> 
+          </div>
         </td>
       </tr>
     <% end %>  
   </tbody>
 </table>
-

@@ -16,11 +16,23 @@ class EmployeeProfilesController < ApplicationController
 
         if target_employee.update(profile_params)
             redirect_to employee_path, notice: "Employee #{target_employee.name}'s profile update successfully"
-            return
         else
             redirect_to employee_path, alert: "Employee #{target_employee.name}'s profile update failed"
-            return
         end
+    end
+
+    def destroy
+        employee = Employee.find_by!(id: params[:id])
+
+        if employee.destroy
+            #todo: transaction
+            EmployeeDepartmentMap.where(employee_id: employee.id).destroy_all
+            EmployeeTaskMap.where(employee_id: employee.id).destroy_all
+
+            redirect_to employee_path, notice: "Employee #{employee.name}'s profile has been removed."
+        else
+            redirect_to employee_path, alert: "Employee #{target_employee.name}'s profile remove failed"
+        end    
     end
 
     private

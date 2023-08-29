@@ -24,7 +24,8 @@ Rails.application.routes.draw do
 
   get "employee/profile/:id", to: "employee_profiles#new", as: :employee_profile
   patch "employee/profile/:id", to: "employee_profiles#update"
-  
+  delete "employee/profile/:id", to: "employee_profiles#destroy"
+
   get "employee/add", to: "employee_adds#new"
   post "employee/add", to: "employee_adds#create"
 
