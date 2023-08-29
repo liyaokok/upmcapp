@@ -1,0 +1,36 @@
+<h1>New Employee</h1>
+
+<%= form_with model: @employee, url: employee_add_path do |form| %>
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Bob Smith" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control", placeholder: "example@email.com" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control", placeholder: "password" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, class: "form-control", placeholder: "password"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label :salary %>
+    <%= form.text_field :salary, class: "form-control", placeholder: "0.00" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: "form-control", placeholder: "0.00" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :employee_role %>
+    <%= form.collection_select :employee_role_id, EmployeeRole.all, :id, :name , {} , class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit "Sign up", class: "btn btn-primary" %>
+  </div>
+<% end %>

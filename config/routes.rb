@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   get "employee/profile/:id", to: "employee_profiles#new", as: :employee_profile
   patch "employee/profile/:id", to: "employee_profiles#update"
+  
+  get "employee/add", to: "employee_adds#new"
 
   root to: "main#index"
 end
