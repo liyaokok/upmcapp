@@ -24,7 +24,7 @@ EmployeeRole.create!([
 # departments
 Department.destroy_all
 
-departments = [Department.create!(name: "emergecy"), Department.create!(name: "internal medicine"), Department.create!(name: "surgery")]
+departments = [Department.create!(name: "emergency"), Department.create!(name: "internal medicine"), Department.create!(name: "surgery")]
 
 # tasks
 Task.destroy_all
@@ -41,7 +41,7 @@ Employee.destroy_all
 
 Employee.create!([
     {
-        name: "Jim Department",
+        name: "Jim D",
         email: "Jim_fake@gmail.com",
         salary: 300000.00,
         address: "100 Jim Rd, Pittsburgh PA, 15213",
@@ -50,12 +50,85 @@ Employee.create!([
         employee_role: EmployeeRole.find_by(name: "department manager")
     },
     {
-        name: "Bob Company",
+        name: "Bill D",
+        email: "Bill_fake@gmail.com",
+        salary: 350000.00,
+        address: "200 Bill Rd, Pittsburgh PA, 15213",
+        password: "password",
+        password_confirmation: "password",
+        employee_role: EmployeeRole.find_by(name: "department manager")
+    },
+    {
+        name: "Mike D",
+        email: "Mike_fake@gmail.com",
+        salary: 360000.00,
+        address: "300 Mike Rd, Pittsburgh PA, 15213",
+        password: "password",
+        password_confirmation: "password",
+        employee_role: EmployeeRole.find_by(name: "department manager")
+    },
+    {
+        name: "Bob C",
         email: "Bob_fake@gmail.com",
         salary: 500000.00,
-        address: "200 Bob Rd, Pittsburgh PA, 15213",
+        address: "1 Bob Rd, Pittsburgh PA, 15213",
         password: "password",
         password_confirmation: "password",
         employee_role: EmployeeRole.find_by(name: "company manager")
     },
+    {
+        name: "Emily G",
+        email: "Emily_fake@gmail.com",
+        salary: 100000.00,
+        address: "400 Emily Rd, Pittsburgh PA, 15213",
+        password: "password",
+        password_confirmation: "password",
+        employee_role: EmployeeRole.find_by(name: "general")
+    },
+    {
+        name: "Robert G",
+        email: "Robert_fake@gmail.com",
+        salary: 110000.00,
+        address: "500 Robert Rd, Pittsburgh PA, 15213",
+        password: "password",
+        password_confirmation: "password",
+        employee_role: EmployeeRole.find_by(name: "general")
+    },
+    {
+        name: "Emma G",
+        email: "Emma_fake@gmail.com",
+        salary: 110000.00,
+        address: "600 Emma Rd, Pittsburgh PA, 15213",
+        password: "password",
+        password_confirmation: "password",
+        employee_role: EmployeeRole.find_by(name: "general")
+    }    
 ])
+
+# Assign department
+
+# emergency department: 
+# Jim D, Emily G, Robert G, Emma G
+EmployeeDepartmentMap.create!(employee_id: Employee.find_by(name: "Jim D").id, department_id: Department.find_by(name: "emergency").id);
+EmployeeDepartmentMap.create!(employee_id: Employee.find_by(name: "Emily G").id, department_id: Department.find_by(name: "emergency").id);
+EmployeeDepartmentMap.create!(employee_id: Employee.find_by(name: "Robert G").id, department_id: Department.find_by(name: "emergency").id);
+EmployeeDepartmentMap.create!(employee_id: Employee.find_by(name: "Emma G").id, department_id: Department.find_by(name: "emergency").id);
+# internal medicine department:
+# Bill D, Robert G
+EmployeeDepartmentMap.create!(employee_id: Employee.find_by(name: "Bill D").id, department_id: Department.find_by(name: "internal medicine").id);
+EmployeeDepartmentMap.create!(employee_id: Employee.find_by(name: "Robert G").id, department_id: Department.find_by(name: "internal medicine").id);
+
+# surgery department:
+# Mike D, Emma G
+EmployeeDepartmentMap.create!(employee_id: Employee.find_by(name: "Mike D").id, department_id: Department.find_by(name: "surgery").id);
+EmployeeDepartmentMap.create!(employee_id: Employee.find_by(name: "Emma G").id, department_id: Department.find_by(name: "surgery").id);
+
+# Assign task
+# random
+Employee.all.each do |employee|
+    employee.departments.each do |department|
+        if department.tasks.length > 0
+            EmployeeTaskMap.create!(employee_id: employee.id, task_id: department.tasks[rand(department.tasks.length)].id)
+        end
+    end
+end
