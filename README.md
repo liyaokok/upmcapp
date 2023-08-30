@@ -20,8 +20,10 @@ todo
 
 # Commands
 
-Create database `rails db:create`
-Run datase migrations `rails db:migrate`
-Seed database `rails db:seed`
-Start server `rails s`
-Run test "rails test <path_to_test_file>"
+| usage | command |
+| ----- | ------- |
+| Create database | `rails db:create` |
+| Run datase migrations | `rails db:create` |
+| Seed database | `rails db:seed` |
+| Start server | `rails s` |
+| Run test | "rails test <path_to_test_file>" |
