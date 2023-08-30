@@ -3,11 +3,11 @@
 one:
   source_name: MyString
   target_name: MyString
-  actiong: MyString
+  action: MyString
   params: MyString
 
 two:
   source_name: MyString
   target_name: MyString
-  actiong: MyString
+  action: MyString
   params: MyString
