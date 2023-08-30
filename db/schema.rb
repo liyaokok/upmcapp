@@ -11,13 +11,16 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_08_29_215852) do
-  create_table "departments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "departments", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "emp_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "emp_logs", force: :cascade do |t|
     t.string "source_name", null: false
     t.string "target_name", null: false
     t.string "action", null: false
@@ -26,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_215852) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "employee_department_maps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "employee_department_maps", force: :cascade do |t|
     t.bigint "department_id", null: false
     t.bigint "employee_id", null: false
     t.datetime "created_at", null: false
@@ -36,13 +39,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_215852) do
     t.index ["employee_id"], name: "index_employee_department_maps_on_employee_id"
   end
 
-  create_table "employee_roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "employee_roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "employee_task_maps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "employee_task_maps", force: :cascade do |t|
     t.bigint "task_id", null: false
     t.bigint "employee_id", null: false
     t.datetime "created_at", null: false
@@ -52,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_215852) do
     t.index ["task_id"], name: "index_employee_task_maps_on_task_id"
   end
 
-  create_table "employees", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "employees", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.decimal "salary", precision: 12, scale: 2
@@ -67,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_215852) do
     t.index ["salary"], name: "index_employees_on_salary"
   end
 
-  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "department_id", null: false
     t.datetime "created_at", null: false
