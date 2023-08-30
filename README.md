@@ -26,4 +26,4 @@ todo
 | Run datase migrations | `rails db:create` |
 | Seed database | `rails db:seed` |
 | Start server | `rails s` |
-| Run test | "rails test <path_to_test_file>" |
+| Run test | `rails test <path_to_test_file>` |
