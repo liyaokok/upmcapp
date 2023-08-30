@@ -13,7 +13,7 @@
   <tbody>
     <% for emp_log in @entries do %>
       <tr>
-        <th scope="row"><%= l emp_log.created_at, format: :long %></th>
+        <th scope="row"><%= l emp_log.created_at %></th>
         <td><%= emp_log.source_name %></td>
         <td><%= emp_log.target_name %></td>
         <td><%= emp_log.action %></td>
