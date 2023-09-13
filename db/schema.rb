@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_29_215852) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_13_141308) do
   create_table "departments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -67,12 +67,65 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_215852) do
     t.index ["salary"], name: "index_employees_on_salary"
   end
 
+  create_table "locations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "address1", null: false
+    t.string "address2"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip_code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservation_customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email"
+    t.string "phone_number", null: false
+    t.boolean "is_confirmed", default: false
+    t.boolean "is_fulfilled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "reservation_customer_id", null: false
+    t.bigint "technician_id", null: false
+    t.bigint "service_item_id", null: false
+    t.string "reservation_locator", null: false
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_customer_id"], name: "index_reservations_on_reservation_customer_id"
+    t.index ["reservation_locator"], name: "unique_reservation_locators", unique: true
+    t.index ["service_item_id"], name: "index_reservations_on_service_item_id"
+    t.index ["technician_id"], name: "index_reservations_on_technician_id"
+  end
+
+  create_table "service_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.decimal "amount", precision: 12, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "department_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_tasks_on_department_id"
+  end
+
+  create_table "technicians", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name"
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_technicians_on_location_id"
   end
 
 end
