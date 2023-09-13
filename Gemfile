@@ -72,3 +72,5 @@ group :test do
 end
 
 gem "sidekiq", "~> 7.1"
+
+gem "phonelib", "~> 0.8.3"
