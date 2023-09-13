@@ -1,4 +1,7 @@
 class EmployeeProfilesController < ApplicationController
+    before_action :require_user_logged_in!
+    before_action :require_manager_role!
+    
     def new
         @employee = target_employee
     end
