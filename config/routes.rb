@@ -31,5 +31,7 @@ Rails.application.routes.draw do
 
   get "emp_log", to: "emp_logs#new"
 
+  get "reservation", to: "reservations#index"
+
   root to: "main#index"
 end
