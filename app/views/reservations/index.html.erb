@@ -1,3 +1,23 @@
-<div class="d-flex align-items-center justify-content-center">
-    <h1>Welcome to Reservation</h1>
+
+
+<div class="d-flex align-items-center justify-content-center mb-5">
+    <div class="m-5">
+        <div class="card mb-3">
+            <%= image_tag "xin_sui_img.webp", class: "card-img-top", alt: "Xin Sui Reflexology" %>
+            <div class="card-body">
+                <h5 class="card-title">Start booking by selecting a date</h5>
+
+                <%= form_with url: root_path do |form| %>
+                    <div class="mb-3">
+                        <%= select_date %>
+                    </div>
+
+                    <div class="mb-3">
+                        <%= form.submit "Search", class: "btn btn-primary" %>
+                    </div>
+                <% end %>
+
+            </div>
+        </div> 
+    </div>
 </div>
