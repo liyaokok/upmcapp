@@ -89,9 +89,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_13_141308) do
   end
 
   create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "reservation_customer_id", null: false
+    t.bigint "reservation_customer_id"
     t.bigint "technician_id", null: false
-    t.bigint "service_item_id", null: false
+    t.bigint "service_item_id"
     t.string "reservation_locator", null: false
     t.datetime "start_at", null: false
     t.datetime "end_at", null: false
