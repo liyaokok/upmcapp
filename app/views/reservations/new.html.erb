@@ -5,11 +5,16 @@
         <div class="card mb-3">
             <%= image_tag "xin_sui_img.webp", class: "card-img-top", alt: "Xin Sui Reflexology" %>
             <div class="card-body">
-                <h5 class="card-title">Start booking by selecting a date</h5>
+                <h5 class="card-title">Start Booking</h5>
 
-                <%= form_with url: root_path do |form| %>
+                <%= form_with url: reservation_search_path, method: "get" do |form| %>
                     <div class="mb-3">
-                        <%= select_date %>
+                        <%= form.label :select_date, class: "form-label" %>
+                        <%= form.date_select :selected_date, {}, class: "form-select mb-1" %>
+                    </div>
+                    <div class="mb-3">
+                        <%= form.label :location, class: "form-label" %>
+                        <%= form.collection_select :location_id, Location.all, :id, :city , {} , class: "form-select" %>
                     </div>
 
                     <div class="mb-3">

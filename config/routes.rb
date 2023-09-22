@@ -33,5 +33,7 @@ Rails.application.routes.draw do
 
   get "reservation", to: "reservations#new"
 
+  get "reservation/search", to: "reservation_searches#new"
+
   root to: "main#index"
 end
