@@ -1,0 +1,14 @@
+<div class="mb-3">
+    <div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= technician.first_name %></h5>
+        <% if available_reservations.length == 0 %>
+            <p>No available slot found</p>
+        <% else %>
+            <% for available_reservation in available_reservations do %>
+                <a href="#" class="btn btn-primary me-4 mt-3 px-4"><%= available_reservation.start_at.to_s(:time) %></a>
+            <% end %>
+        <% end %>
+    </div>
+    </div>
+</div>
